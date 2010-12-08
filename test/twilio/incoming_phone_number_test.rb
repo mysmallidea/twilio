@@ -15,6 +15,17 @@ class IncomingPhoneNumberTest < Test::Unit::TestCase #:nodoc: all
       assert_equal stub_response(:get, :incoming_phone_numbers, :resource => 'IncomingPhoneNumbers'),
         Twilio::IncomingPhoneNumber.list
     end
+
+    should "be able to create a number" do
+      assert_equal stub_response(:post, :incoming_phone_numbers, :resource => 'IncomingPhoneNumbers'),
+        Twilio::IncomingPhoneNumber.create(:area_code => '666')
+    end
+    
+    should "be able to update a number by Sid" do
+      assert_equal stub_response(:put, :incoming_phone_numbers, :resource => 'IncomingPhoneNumbers/1234567890'),
+        Twilio::IncomingPhoneNumber.update('1234567890')
+    end
+    
     
     context "using deprecated API" do
       setup do
