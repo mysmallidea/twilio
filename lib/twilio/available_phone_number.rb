@@ -4,9 +4,9 @@ module Twilio
   # Example:
   #   Twilio.connect('my_twilio_sid', 'my_auth_token')
   #   Twilio::IncomingPhoneNumber.list
-  class IncomingPhoneNumber < TwilioObject
-    def list(optional = {})
-      Twilio.get("/IncomingPhoneNumbers", :query => optional) 
+  class AvailablePhoneNumber < TwilioObject
+    def list(country_code='US'optional = {})
+      Twilio.get("/AvailablePhoneNumber/#{country_code}/Local", :query => optional) 
     end
     
     def get(incoming_sid)
